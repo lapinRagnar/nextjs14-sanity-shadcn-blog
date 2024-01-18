@@ -702,6 +702,51 @@ import PortableText from "@portabletext/react"
 ```
 
 
+### 4. afficher les markdown - avec la librairies @tailwindcss/typography - pour bien afficher les typo du contenu
+doc: https://tailwindcss.com/docs/typography-plugin
+
+
+installation:
+``` cmd
+npm install -D @tailwindcss/typography
+```
+et Then add the plugin to your tailwind.config.js file:
+
+> tailwind.config.js
+```ts
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  theme: {
+    // ...
+  },
+  plugins: [
+    require('@tailwindcss/typography'),
+    // ...
+  ],
+}
+
+```
+
+et dans le contenu, on ajoute la classe tailwind css prose lg:prose-xl comme ceci 👍
+
+> app\blog\[slug]\page.tsx
+```tsx
+  ...
+  ...
+
+  <div className="mt-8 ">
+    <PortableText value={data?.content} />
+  </div>
+  ...
+  ...
+
+```
+
+
+
+
+
+
 
 
 

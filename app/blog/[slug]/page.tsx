@@ -30,7 +30,7 @@ const BlogDetails = async ({params}: {params: {slug: string}}) => {
 
   
   return (
-    <div className="mt-8 flex gap-4">
+    <div className="mt-8 flex gap-8">
 
 
       <Image 
@@ -55,7 +55,7 @@ const BlogDetails = async ({params}: {params: {slug: string}}) => {
             </span>
           </h1>
 
-          <div className="mt-8">
+          <div className="mt-8 prose lg:prose-p: dark:prose-invert">
             <PortableText value={data?.content} />
           </div>
 
