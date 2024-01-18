@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import { ModeToggle } from "@/app/components/ModeToggle"
 
 const Navbar = () => {
   return (
@@ -19,7 +20,11 @@ const Navbar = () => {
          </div>
       
       </Link>
-      <div>user</div>
+      
+      <div className="flex items-center space-x-2">
+        <ModeToggle />
+        <div>user</div>
+      </div>
     </nav>
   )
 }
