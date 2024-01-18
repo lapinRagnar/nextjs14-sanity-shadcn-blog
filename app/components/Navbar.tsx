@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 
 const Navbar = () => {
@@ -7,7 +8,17 @@ const Navbar = () => {
       bg-gradient-to-b from-gray-900 to-gray-600 
       "
       >
-      <Link href={"/"}>LapinRagnar - Blog</Link>
+      <Link href={"/"}>
+         <div className="flex items-center justify-center">
+
+          <Image src={"/logo4-1.png"} width={150} height={100} alt="logo" />
+          <span className="text-gray-300 text-2xl text-bold">
+            Blog
+          </span>
+
+         </div>
+      
+      </Link>
       <div>user</div>
     </nav>
   )

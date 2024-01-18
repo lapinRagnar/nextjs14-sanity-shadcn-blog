@@ -1,6 +1,6 @@
 https://www.youtube.com/watch?v=Lydgf-Hvla4
 
-# configuration du projet
+# I. configuration du projet
 ## 1. installer sanity
 
 ```bash
@@ -74,12 +74,11 @@ et on peut creer un blog avec le studio
 on creer 3 ou 4 blog sur le studio
 
 
-## la suite
+## II. la suite
 
 ### on cree la navbar
 
 > app\components\Navbar.tsx
-
 ```tsx
 
 const Navbar = () => {
@@ -91,7 +90,10 @@ const Navbar = () => {
 export default Navbar
 ```
 
-eton met notre navbar dans layout
+et on met notre navbar dans layout
+
+
+
 
 > app\layout.tsx
 ```tsx
@@ -129,7 +131,46 @@ export default function RootLayout({
 
 
 
+
+```
+
+la version finale de la navbar : 
+
+> app\components\Navbar.tsx
+``` tsx
+import Image from "next/image"
+import Link from "next/link"
+
+const Navbar = () => {
+  return (
+    <nav 
+      className="w-full flex items-center justify-between max-w-7xl mx-auto p-5
+      bg-gradient-to-b from-gray-900 to-gray-600 
+      "
+      >
+      <Link href={"/"}>
+         <div className="flex items-center justify-center">
+
+          <Image src={"/logo4-1.png"} width={150} height={100} alt="logo" />
+          <span className="text-gray-300 text-2xl text-bold">
+            Blog
+          </span>
+
+         </div>
+      
+      </Link>
+      <div>user</div>
+    </nav>
+  )
+}
+
+export default Navbar
 ```
 
 
+### installation de schacn ui
+
+```cmd
+npx shadcn-ui@latest init
+```
 
