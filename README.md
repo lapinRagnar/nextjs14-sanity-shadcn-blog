@@ -580,5 +580,41 @@ const nextConfig = {
 ```
 
 
+## IV. afficher le blog par slug - dynamique route
+
+###  1. on cree le fichier blog/[slug]/page.tsx
+
+>app\blog\[slug]\page.tsx
+```tsx
+
+const BlogDetails = () => {
+  return (
+    <div>BlogDetails</div>
+  )
+}
+
+export default BlogDetails
+
+```
+
+et on verifie si ca marche avec le slug : http://localhost:3000/blog/abysses-de-performance-l-art-du-gaming-refroidi-par-liquide
+
+et oui, on affiche bien le mot BlogDetails sur la page.
+
+### 2. comment afficher le slug avec params
+
+on desctructure le params et on affiche le slug
+
+> app\blog\[slug]\page.tsx
+```tsx
+const BlogDetails = ({params}: {params: {slug: string}}) => {
+  return (
+    <div>
+      <h1>le slug est = {params.slug}</h1>
+    </div>
+  )
+}
+```
+
 
 
