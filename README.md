@@ -616,5 +616,92 @@ const BlogDetails = ({params}: {params: {slug: string}}) => {
 }
 ```
 
+### 3. fetch du data avec le slug - @portabletext/react pour sanitizer le contenu
+
+- on va dans sanity studio pour simuler la requette
+
+![Alt text](image_pour_readme/fetchBlogBySlug.png)
+
+- on ajoute une interface pour notre data
+
+> lib\sanity.ts
+``` ts
+export interface fullBlog {
+  currentSlug: string
+  title: string
+  smallDescription: string
+  content: any
+  titleImage: any
+}
+```
+
+- on query la data, et on console log pour verifier si ca
+
+> app\blog\[slug]\page.tsx
+``` tsx
+import { fullBlog } from "@/lib/interface"
+import { client } from "@/lib/sanity"
+
+async function getData(slug: string) {
+
+  const query = `
+
+    * [_type == 'blog' && slug.current == '${slug}'] {
+        smallDescription,
+        "currentSlug": slug.current,
+        title,
+        content,
+        titleImage
+      } [0]
+
+  `
+  const data: fullBlog = await client.fetch(query)
+  
+  return data
+
+}
+
+const BlogDetails = async ({params}: {params: {slug: string}}) => {
+
+  const data = await getData(params.slug)
+
+  console.log("les données par slug", data)
+
+  
+  return (
+    <div>
+      <h1>le slug est = {params.slug}</h1>
+    </div>
+  )
+}
+
+export default BlogDetails
+```
+
+- ensuite pour afficher le content, c'est encore toute une histoire, il faut installer un package
+- 
+``` cmd
+  npm i @portabletext/react
+```
+
+parce qu'il faut sanitiser le content à afficher (parce que c'est un objet bizare de sanity)
+
+- pour afficher le content, on va dans le blog/[slug]/page.tsx
+
+``` tsx
+import PortableText from "@portabletext/react"
+...
+...
+
+// et
+
+<PortableText value={data.content} />
+...
+...
+
+```
+
+
+
 
 
