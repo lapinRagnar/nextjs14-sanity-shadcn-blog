@@ -30,7 +30,7 @@ export default function RootLayout({
 
           <Navbar />
 
-          <div>
+          <div className='min-h-screen max-w-7xl mx-auto p-5 bg-neutral-900'>
             {children}
           </div>
 
