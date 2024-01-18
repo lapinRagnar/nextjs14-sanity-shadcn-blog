@@ -383,7 +383,50 @@ export function ModeToggle() {
 <ModeToggle />
 ```
 
+## III. fetch data avec sanity 
+
+doc : cheat sheet pour query : https://www.sanity.io/docs/query-cheat-sheet
+
+- vision pour essayer notre requette 
+on peut preparer notre requette comme ceci
+![Alt text](image_pour_readme/fetchDataSanity1.png)
+
+- on a le query suivant pour afficher la liste des posts dans un ordre decroissant 👍
+```ts
+*[_type == 'blog'] | order(_createdAt desc) {
+  title, 
+  smallDescription,
+  "currentSlug": slug.current
+}
+```
 
 
+### - on cree un sanity client dans lib\sanity.ts
 
+installation avec la commande ci-dessous
+```cmd
+npm i next-sanity
+```
+et creer le fichier 👍
+> lib\sanity.ts
+```ts
+import { createClient } from "next-sanity"
+
+export const client = createClient({
+  apiVersion: "2023-05-03",
+  dataset: process.env.SANITY_DATASET,
+  projectId: process.env.SANITY_PROJECT_ID,
+  useCdn: false
+})
+
+```
+
+creer un .env
+
+> .env
+```
+SANITY_PROJECT_ID="......"
+SANITY_DATASET="......"
+
+```
 
