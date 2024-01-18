@@ -429,4 +429,31 @@ SANITY_PROJECT_ID="......"
 SANITY_DATASET="......"
 
 ```
+### ensuite, on type les datas
+
+dans lib\interface.ts
+
+> lib\interface.ts
+```ts
+export interface simpleBlogCard {
+  title: string
+  smallDescription: string
+  currentSlug: string,
+  titleImage: string
+}
+```
+
+et dans page.tsx
+> app\page.tsx
+```
+import { simpleBlogCard } from "@/lib/interface";
+
+.....
+.....
+const data: simpleBlogCard[] = await client.fetch(query)
+
+```
+
+
+
 

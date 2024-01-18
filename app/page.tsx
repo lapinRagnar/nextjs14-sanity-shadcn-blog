@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { simpleBlogCard } from "@/lib/interface";
 import { client } from "@/lib/sanity";
 
 async function getData() {
@@ -8,11 +9,12 @@ async function getData() {
   *[_type == 'blog'] | order(_createdAt desc) {
     title, 
     smallDescription,
-    "currentSlug": slug.current
+    "currentSlug": slug.current,
+    titleImage
   }
   
   `
-  const data = await client.fetch(query)
+  const data: simpleBlogCard[] = await client.fetch(query)
 
   return data
 
