@@ -71,6 +71,8 @@ maintenant on lancer le studio sur : http://localhost:3333/
 
 et on peut creer un blog avec le studio
 
+on creer 3 ou 4 blog sur le studio
+
 
 
 

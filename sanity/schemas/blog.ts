@@ -12,6 +12,9 @@ export default {
       name: 'slug',
       type: 'slug',
       title: 'slog du blog',
+      options: {
+        source: 'title',
+      }
     },
     {
       name: 'titleImage',
@@ -21,7 +24,7 @@ export default {
     {
       name: 'smallDescription',
       type: 'text',
-      title: 'Pesite description'
+      title: 'Petite description'
     },
     {
       name: 'content',
