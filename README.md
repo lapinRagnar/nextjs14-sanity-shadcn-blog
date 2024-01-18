@@ -455,5 +455,130 @@ const data: simpleBlogCard[] = await client.fetch(query)
 ```
 
 
+### et on affiche les données sur la page
+
+mais d'abord, on va installer d'abord le card de shadcn 
+
+```cmd
+npx shadcn-ui@latest add card
+```
+
+pour afficher l'image sanity a besoin de transformer l'objet de image en url, donc il faut installer 
+```cmd
+npm install --save @sanity/image-url
+```
+
+dans sanity lib\sanity.ts on va creer une fonction pour transformer l'objet image en url
+
+> lib\sanity.ts
+```ts
+import { createClient } from "next-sanity"
+...
+...
+const builder = imageUrlBuilder(client)
+
+export function urlFor(source: any) {
+
+  return builder.image(source)
+}
+
+```
+
+
+et notre page.tsx resemble à ceci 
+> app\page.tsx
+``` tsx
+
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { simpleBlogCard } from "@/lib/interface";
+import { client, urlFor } from "@/lib/sanity";
+import Image from "next/image";
+import Link from "next/link";
+
+async function getData() {
+
+  const query = `
+  
+  *[_type == 'blog'] | order(_createdAt desc) {
+    title, 
+    smallDescription,
+    "currentSlug": slug.current,
+    titleImage
+  }
+  
+  `
+  const data: simpleBlogCard[] = await client.fetch(query)
+
+  return data
+
+}
+
+export default async function Home() {
+
+  const data = await getData()
+
+  console.log("les données", data)
+
+  return (
+    <main className="">
+      
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+        { data && data.map((post, index) => (
+          
+          <Card key={index}>
+
+            <CardContent className="p-5">
+
+
+              <Image 
+                src={urlFor(post.titleImage).url()} 
+                alt={post.title} 
+                width={300} 
+                height={300} 
+                className="w-full h-full object-cover"  
+              />
+
+
+              <h3 className="text-lg line-clamp-2 my-5 text-gray-100 font-bold">{post.title}</h3>
+              <p className="text-sm line-clamp-3 mb-5 text-gray-400">{post.smallDescription}</p>
+
+              <Button asChild className="w-full ">
+                <Link href={`/blog/${post.currentSlug}`}>Lire la suite</Link>
+              </Button>
+
+            </CardContent>
+            
+          </Card>
+          
+        ))}
+      </div>
+    </main>
+  )
+}
+
+
+```
+
+
+et enfin, puisqu'on utilise le <Image />, il faut ajouter dans le next.config.js le domaine de l'image
+
+> next.config.js
+```ts
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+        // port: '',
+        // pathname: '/account123/**',
+      },
+    ],
+  },
+}
+```
+
+
 
 

@@ -1,6 +1,9 @@
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { simpleBlogCard } from "@/lib/interface";
-import { client } from "@/lib/sanity";
+import { client, urlFor } from "@/lib/sanity";
+import Image from "next/image";
+import Link from "next/link";
 
 async function getData() {
 
@@ -27,11 +30,37 @@ export default async function Home() {
   console.log("les données", data)
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="">
       
-      <div>
-        salut
-        <Button>test</Button>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+        { data && data.map((post, index) => (
+          
+          <Card key={index}>
+
+            <CardContent className="p-5">
+
+
+              <Image 
+                src={urlFor(post.titleImage).url()} 
+                alt={post.title} 
+                width={300} 
+                height={300} 
+                className="w-full h-full object-cover"  
+              />
+
+
+              <h3 className="text-lg line-clamp-2 my-5 text-gray-100 font-bold">{post.title}</h3>
+              <p className="text-sm line-clamp-3 mb-5 text-gray-400">{post.smallDescription}</p>
+
+              <Button asChild className="w-full ">
+                <Link href={`/blog/${post.currentSlug}`}>Lire la suite</Link>
+              </Button>
+
+            </CardContent>
+            
+          </Card>
+          
+        ))}
       </div>
     </main>
   )
