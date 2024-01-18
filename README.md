@@ -744,7 +744,12 @@ et dans le contenu, on ajoute la classe tailwind css prose lg:prose-xl comme cec
 
 
 
+# deployer sur sanity
 
+```
+cd sanity
+npm run deploy
+```
 
 
 
