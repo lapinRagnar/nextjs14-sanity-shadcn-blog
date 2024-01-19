@@ -751,7 +751,7 @@ cd sanity
 npm run deploy
 ```
 
-
+le lien : https://nextjs14-sanity-blog.sanity.studio/
 
 
 

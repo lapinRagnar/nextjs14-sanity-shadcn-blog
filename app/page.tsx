@@ -51,8 +51,8 @@ export default async function Home() {
               />
 
 
-              <h3 className="text-lg line-clamp-2 my-5 text-gray-100 font-bold">{post.title}</h3>
-              <p className="text-sm line-clamp-3 mb-5 text-gray-400">{post.smallDescription}</p>
+              <h3 className="text-lg line-clamp-2 my-5 text-gray-600 dark:text-gray-100 font-bold ">{post.title}</h3>
+              <p className="text-sm line-clamp-3 mb-5 text-gray-400 dark:text-gray-400">{post.smallDescription}</p>
 
               <Button asChild className="w-full ">
                 <Link href={`/blog/${post.currentSlug}`}>Lire la suite</Link>

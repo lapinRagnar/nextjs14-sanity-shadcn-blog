@@ -32,7 +32,7 @@ const BlogDetails = async ({params}: {params: {slug: string}}) => {
 
   
   return (
-    <div className="mt-8 flex gap-8">
+    <div className="mt-8 block md:flex gap-8">
 
 
       <Image 
@@ -45,7 +45,7 @@ const BlogDetails = async ({params}: {params: {slug: string}}) => {
         />
 
 
-        <div>
+        <div className="mt-8">
 
           <h1>
             <span className="block text-base text-center text-primary font-semibold tracking-wide uppercase">lapinragnar - blog</span>  

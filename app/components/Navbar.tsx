@@ -6,7 +6,9 @@ const Navbar = () => {
   return (
     <nav 
       className="w-full flex items-center justify-between max-w-7xl mx-auto p-5
-      bg-gradient-to-b from-gray-900 to-gray-600 
+      dark:bg-gradient-to-b dark:from-gray-900 dark:to-gray-600 
+      bg-orange-800
+      rounded-sm text-gray-100
       "
       >
       <Link href={"/"}>
@@ -14,7 +16,7 @@ const Navbar = () => {
 
           <Image src={"/logo4-1.png"} width={150} height={100} alt="logo" />
           <span className="text-gray-300 text-2xl text-bold">
-            Blog
+            Blog - Demo nextjs 14 && Sanity
           </span>
 
          </div>
@@ -23,7 +25,7 @@ const Navbar = () => {
       
       <div className="flex items-center space-x-2">
         <ModeToggle />
-        <div>user</div>
+        <div className="text-xs">toggle mode</div>
       </div>
     </nav>
   )
